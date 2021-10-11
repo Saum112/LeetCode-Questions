@@ -1,0 +1,47 @@
+/*
+
+
+The  difference from House Robber I is that all the houses are in the circle here, which simply means if you select the first one then you won't 
+be able to select the last one since they are neighbors. Only when you don't select the first one, you then COULD select the last one. 
+Hey, why don't we break the circle => e.g. houses are [2,7,9,3,1], if I select the first one (which has money 2), 
+I don't even care about the last one, question will become to rob [2,7,9,3] instead. Same, if we did not select first one, 
+question becomes to rob [7,9,3,1], and the final result would be the larger result between them. OMG House Robber II really 
+is want us to do House Robber I twice! Take a look at my beating-100% solution for house robber, finish this up and move on to house robber III !
+
+*/
+
+class Solution {
+    
+    public int robhelper(int[] nums) {
+        
+         int n = nums.length;
+        if(n == 1)
+            return nums[0];
+        
+        if(n ==2)
+            return Math.max(nums[0],nums[1]);
+        
+        int dp[] = new int[n];
+        
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0],nums[1]);
+        
+        for(int i = 2; i<n; i++ ){
+            
+            dp[i] = Math.max(nums[i]+dp[i-2], dp[i-1]);
+        }
+        
+    
+        return dp[n-1];
+    }
+    
+    public int rob(int[] nums) {
+        
+        if (nums.length==0) return 0;
+        if (nums.length==1) return nums[0];
+        int[] a1 = Arrays.copyOfRange(nums, 0, nums.length-1);
+        int[] a2 = Arrays.copyOfRange(nums, 1, nums.length);
+        return Math.max(robhelper(a1),robhelper(a2));
+        
+    }
+}
