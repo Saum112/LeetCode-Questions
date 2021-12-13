@@ -1,0 +1,24 @@
+class Solution {
+    public int maxPower(String s) {
+        
+        char prev = s.charAt(0);
+        int c = 1, res=1;
+        for(int i = 1 ; i < s.length();  i++){
+            
+            if(s.charAt(i) == prev){
+             c++;   
+            }
+            
+            else{
+                
+                prev = s.charAt(i);
+                c = 1;
+            }
+          
+            res = Math.max(res , c);
+        }
+        
+        return res;
+        
+    }
+}
