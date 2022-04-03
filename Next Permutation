@@ -1,0 +1,53 @@
+ public void reverse(int i , int j , int[] arr){
+        
+        while(i < j){
+            
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            
+            i++
+                ;
+            j--;
+        }
+    }
+    public void nextPermutation(int[] nums) {
+        
+        int idx = -1 , n = nums.length , ele = 0 , idx1 = 0 ;
+        
+        
+        for(int i = n-2 ; i>=0 ; i--){
+            
+            if(nums[i] < nums[i+1]){
+                
+                idx = i;
+                ele = nums[i];
+                break;
+            }
+        }
+        
+        if(idx == -1){  
+            
+            reverse(0 , n-1 , nums);
+            return;
+        }
+        
+        int val = Integer.MAX_VALUE;
+        for(int i = idx+1 ; i < n ; i++){
+            
+            if(nums[i] > ele && nums[i] <= val)
+            {
+                idx1 = i;
+                val = nums[i];
+            }
+        }
+        
+        int temp = nums[idx];
+        nums[idx] = nums[idx1];
+        nums[idx1] = temp;
+        
+ 
+        reverse(idx+1 , n-1 , nums);
+        
+        
+    }
