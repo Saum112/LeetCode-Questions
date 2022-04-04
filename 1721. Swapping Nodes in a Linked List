@@ -1,0 +1,41 @@
+class Solution {
+    public ListNode swapNodes(ListNode head, int k) {
+        
+        
+        ListNode temp = head , iter = head;
+      ArrayList<Integer> arr = new ArrayList<>();
+        
+        while(iter != null){
+            
+            arr.add(iter.val);
+            iter = iter.next;
+            
+        }
+           
+           
+        int n = arr.size() , i = 0;
+        
+        swap(arr, k-1, n-k);
+        
+        
+        while(temp != null){
+            
+            temp.val = arr.get(i);
+            temp = temp.next;
+            i += 1;
+        }
+      return head; 
+        
+    }
+    
+    
+    public void swap (ArrayList<Integer> arr  , int i , int j){
+        
+        int ele = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, ele);
+    }
+}
+
+
+
