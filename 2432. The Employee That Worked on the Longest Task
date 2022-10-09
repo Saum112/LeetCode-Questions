@@ -1,0 +1,21 @@
+class Solution {
+    public int hardestWorker(int n, int[][] logs) {
+        
+        int ans = 0 , maxTime = 0 , prev = 0  ;
+        
+        
+        for(int [] log : logs){
+            
+            int time = log[1]-prev;
+            prev = log[1];
+            
+            if(time > maxTime || (time == maxTime && ans > log[0])){
+                
+                maxTime = time;
+                ans = log[0];
+            }
+        }
+       
+        return ans;
+    }
+}
