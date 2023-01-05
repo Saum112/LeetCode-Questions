@@ -1,0 +1,21 @@
+class Solution {
+    public int findMinArrowShots(int[][] points) {
+
+    Arrays.sort(points ,(x,y)->Integer.compare(x[1] , y[1]));
+
+    int arrowCount = 1 ;
+    long prev = points[0][1];
+
+    for(int i = 1 ; i < points.length ; i++){
+
+        System.out.println(prev +"  "+ points[i][0]);
+        if(points[i][0] > prev){
+
+            arrowCount++;
+            prev = points[i][1];
+        }
+    }  
+
+    return arrowCount;
+    }
+}
