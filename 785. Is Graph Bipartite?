@@ -1,0 +1,41 @@
+class Solution {
+    public boolean isBipartite(int[][] graph) {
+        
+        int n = graph.length;
+        int [] vis = new int[n];
+
+        for(int i = 0 ; i < n ; i++){
+
+            if(vis[i] == 1 || vis[i] == -1){
+                continue;
+            }
+
+            Queue<Integer> que = new LinkedList<>();
+            que.add(i);
+            vis[i] = 1;
+
+            while(!que.isEmpty()){
+
+                int curr = que.poll();
+
+                for(int ele : graph[curr]){
+
+                    if(vis[ele] == 0){
+
+                        vis[ele] = -vis[curr];
+                        que.add(ele);
+                    }
+
+                    if(vis[ele] == vis[curr]){
+
+                        return false;
+                    }
+                }
+
+                
+            }
+        }
+
+        return true;
+    }
+}
